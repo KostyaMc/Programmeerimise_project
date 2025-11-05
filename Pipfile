@@ -5,9 +5,9 @@ name = "pypi"
 
 [packages]
 django = "*"
-requests = "*"
 pandas = "*"
 scikit-learn = "*"
+requests = "*"
 
 [dev-packages]
 
