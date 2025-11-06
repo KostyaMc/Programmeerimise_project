@@ -3,8 +3,13 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def index(request):
-    return HttpResponse("Home page")
+def index(request) -> HttpResponse:
+    context = {
+        'title': 'Home',
+        'content': 'Team home page'
+    }
+
+    return render(request, 'main/index.html', context)
 
 
 def about(request):
