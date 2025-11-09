@@ -13,4 +13,10 @@ def index(request) -> HttpResponse:
 
 
 def about(request):
-    return HttpResponse("About us")
+    context = {
+        'title': 'About us',
+        'content': 'This page contains basic information about the sites creators',
+        'text_on_page': 'НАДО ПРИДУМАТЬ И ДОБАВИТЬ'
+    }
+
+    return render(request, 'main/about.html', context)
