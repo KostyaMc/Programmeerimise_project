@@ -6,8 +6,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'deps/css/about.css' %}">
 </head>
 <body>
-    <p> {{ text_on_page }} </p>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/matches">Matches</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about-hero">
+            <h1>{{ content }}</h1>
+        </section>
+
+        <section class="about-content">
+            <div class="container">
+                <div class="mission">
+                    <h2>Who We Are</h2>
+                    <p>{{ about_description }}</p>
+                </div>
+
+                <div class="what-we-do">
+                    <h2>What We Do</h2>
+                    <p>{{ what_we_do }}</p>
+                </div>
+
+                <div class="contact-info">
+                    <h2>Contact Us</h2>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <strong>Email:</strong> {{ email }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 {{ company_name }}. All rights reserved.</p>
+            <div class="social-links">
+                <a href="{{ social_links.instagram }}">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'deps/js/main.js' %}"></script>
 </body>
 </html>
