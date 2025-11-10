@@ -10,6 +10,33 @@
     <title>{{ title }}</title>
 </head>
 <body>
+    <h1>{{.title }}</h1>
     <p>{{ content }}</p>
+
+    <h2></h2>Match statistics</h2>
+    <p>Wins: {{ wins }} ({{ win_percent }}%)</p>
+    <p>Draws: {{ draws }} ({{ draw_percent }}%)</p>
+    <p>Losses: {{ losses }} ({{ loss_percent }}%)</p>
+
+    <h2>Last 5 Matches</h2>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Home</th>
+            <th>Score</th>
+            <th>Away</th>
+        </tr>
+        {% for match in matches %}
+        <tr>
+            <td>{{ match.date }}</td>
+            <td>{{ match.home }}</td>
+            <td>{{ match.home_score }} : {{ match.away_score }}</td>
+            <td>{{ match.away }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    
+    <script src="{% static 'deps/js/main.js' %}"></script>
 </body>
 </html>
