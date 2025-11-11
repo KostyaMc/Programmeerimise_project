@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header / Navigation */
+header {
+    background-color: #000000; /* BVB Black */
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    color: #FDE100; /* BVB Yellow */
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #FDE100;
+    color: #000000;
+}
+
+/* Main section */
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border: 2px solid #FDE100;
+}
+
+/* Headings */
+h1, h2 {
+    color: #000000;
+    border-bottom: 3px solid #FDE100;
+    display: inline-block;
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+/* Match Statistics */
+.stats {
+    margin-bottom: 2rem;
+}
+
+.stats p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Match Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #000000;
+    color: #FDE100;
+}
+
+tr:hover {
+    background-color: #FFFDE7;
+}
+
+/* Footer */
+footer {
+    background-color: #000000;
+    color: #FDE100;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+}
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    color: #FDE100; /* BVB Yellow */
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 2px solid #FDE100; /* BVB Yellow */
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.social-links a:hover {
+    background-color: #FDE100; /* BVB Yellow */
+    color: #000000; /* BVB Black */
+}

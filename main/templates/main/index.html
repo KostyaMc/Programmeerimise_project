@@ -8,38 +8,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'deps/css/style.css' %}">
 </head>
 <body>
-    <h1>{{.title }}</h1>
-    <nav>
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'about' %}">About</a>
-    </nav>
-    
-    <p>{{ content }}</p>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="/matches">Matches</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <h2></h2>Match statistics</h2>
-    <p>Wins: {{ wins }} ({{ win_percent }}%)</p>
-    <p>Draws: {{ draws }} ({{ draw_percent }}%)</p>
-    <p>Losses: {{ losses }} ({{ loss_percent }}%)</p>
+    <main>
+        <h1>{{ title }}</h1>
+        <p>{{ content }}</p>
 
-    <h2>Last 5 Matches</h2>
-    <table>
-        <tr>
-            <th>Date</th>
-            <th>Home</th>
-            <th>Score</th>
-            <th>Away</th>
-        </tr>
-        {% for match in matches %}
-        <tr>
-            <td>{{ match.date }}</td>
-            <td>{{ match.home }}</td>
-            <td>{{ match.home_score }} : {{ match.away_score }}</td>
-            <td>{{ match.away }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        <section class="stats">
+            </h2>Match statistics</h2>
+            <p>Wins: {{ wins }} ({{ win_percent }}%)</p>
+            <p>Draws: {{ draws }} ({{ draw_percent }}%)</p>
+            <p>Losses: {{ losses }} ({{ loss_percent }}%)</p>
+        </section>
+
+        <section class="matches">
+            <h2>Last 5 Matches</h2>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Home</th>
+                    <th>Score</th>
+                    <th>Away</th>
+                </tr>
+                {% for match in matches %}
+                <tr>
+                    <td>{{ match.date }}</td>
+                    <td>{{ match.home }}</td>
+                    <td>{{ match.home_score }} : {{ match.away_score }}</td>
+                    <td>{{ match.away }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
+        </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025. {{ company_name }} All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="{{ social_links.instagram }}">Instagram</a>
+            </div>
+        </div>
+    </footer>
     
     
     <script src="{% static 'deps/js/main.js' %}"></script>
