@@ -7,6 +7,8 @@ Praegu on süsteemis olemas ainult Borussia Dortmundi andmed.
 Kasutatud allikad:
 https://youtu.be/qz0aGYrrlhU?si=ob0dm4BXOOYvvNGz
 https://youtu.be/rHux0gMZ3Eg?si=zQLUXl79b16COGoq
+https://docs.djangoproject.com/en/5.2/
+https://realpython.com/python-requests/
 """
 
 from django.shortcuts import render
