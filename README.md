@@ -1,16 +1,14 @@
 # Programeerimise_project
 
 
-сайт, который будет обрабатывать информацию о футбольном клубе и выдавать их процент побед, поражений, ничей, и делать прогноз, у кого больше шансов на победу в след. матче
-
-библиотеки:
- django - front + back
- sqlite - database
- request - football-data api
- scikit-learn, pandas - ai
-
-Первая версия:
- сайт(frontend) макет
- можно вводить количество игр, побед, ничей и поражений
- выводит процент побед, ничей и поражений и сохраняет данных
- можно сравнить с другой командой
+Projekt: Jalgpalliklubide statistika
+Autorid: Konstantin Geimonen ja Ruslan Nišajev
+Kirjeldus: Django veebiprojekt, mis kuvab jalgpalliklubide viimase viie mängu statistikat 
+(näiteks võitude, viikide ja kaotuste arv ning nende protsentuaalne jaotus). 
+Praegu on süsteemis olemas ainult Borussia Dortmundi andmed.
+Kasutatud allikad:
+https://youtu.be/qz0aGYrrlhU?si=ob0dm4BXOOYvvNGz
+https://youtu.be/rHux0gMZ3Eg?si=zQLUXl79b16COGoq
+https://docs.djangoproject.com/en/5.2/
+https://realpython.com/python-requests/
+"""
