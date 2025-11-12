@@ -1,14 +1,16 @@
-# Programeerimise_project
+# Programeerimise_projekt
+## Projekti kirjeldus:
+Veebisait, mis töötleb jalgpalliklubi andmeid ja kuvab võitude, kaotuste ja viikide protsendid ning teeb prognoosi selle kohta, kummal meeskonnal on järgmises mängus suurem võiduvõimalus.
 
+## Kasutatud teegid ja tehnoloogiad:
 
-Projekt: Jalgpalliklubide statistika
-Autorid: Konstantin Geimonen ja Ruslan Nišajev
-Kirjeldus: Django veebiprojekt, mis kuvab jalgpalliklubide viimase viie mängu statistikat 
-(näiteks võitude, viikide ja kaotuste arv ning nende protsentuaalne jaotus). 
-Praegu on süsteemis olemas ainult Borussia Dortmundi andmed.
-Kasutatud allikad:
-https://youtu.be/qz0aGYrrlhU?si=ob0dm4BXOOYvvNGz
-https://youtu.be/rHux0gMZ3Eg?si=zQLUXl79b16COGoq
-https://docs.djangoproject.com/en/5.2/
-https://realpython.com/python-requests/
-"""
+Django – frontendi ja backendi jaoks
+
+SQLite – andmebaas
+
+Requests – andmete hankimiseks Football-Data API kaudu
+
+Scikit-learn ja Pandas – tehisintellekti ja andmetöötluse jaoks
+
+## Esimene versioon:
+Veebisaidi (frontend) makett kuvab Borussia Dortmundi viimased viis mängu, samuti võitude, kaotuste ja viikide arvu ning nende protsentuaalse jaotuse.
