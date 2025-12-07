@@ -15,6 +15,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import requests
 
+from .ai import model
+
 # Home Page
 def index(request) -> HttpResponse:
     # API setup
@@ -67,7 +69,22 @@ def index(request) -> HttpResponse:
     total = wins + draws + losses or 1
     win_percent = round((wins / total) * 100, 1)
     draw_percent = round((draws / total) * 100, 1)
-    loss_percent = round((losses / total) * 100, 1)  
+    loss_percent = round((losses / total) * 100, 1)
+
+
+    opponent = request.GET.get('opponent')  # берем соперника из GET параметра
+    is_home = request.GET.get('is_home') == 'on'
+    bvb_prediction = None
+
+    if opponent:
+        result = model.predict(opponent, is_home)
+        bvb_prediction = {
+            'opponent': opponent,
+            'is_home': is_home,
+            'prediction': result['prediction'],
+            'confidence': f"{result['confidence']*100:.1f}%",
+            'probabilities': result['probabilities'],
+        }  
 
 
     # Send data to the template      
@@ -79,7 +96,8 @@ def index(request) -> HttpResponse:
         "losses": losses,
         "win_percent": win_percent,
         "draw_percent": draw_percent,
-        "loss_percent": loss_percent
+        "loss_percent": loss_percent,
+        "bvb_prediction": bvb_prediction,
     }   
     
 

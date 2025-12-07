@@ -2,9 +2,15 @@ import pandas as pd
 import numpy as np
 from collections import Counter
 import random
+import os
+
 
 # Загрузка данных
-data = pd.read_csv('bvb-2024.csv', encoding='cp1251', delimiter=',')
+#data = pd.read_csv('bvb-2024.csv', encoding='cp1251', delimiter=',')
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+csv_path = os.path.join(BASE_DIR, 'data', 'bvb-2024.csv')
+data = pd.read_csv(csv_path, encoding='cp1251', delimiter=',')
+
 print("Первые строки данных:")
 print(data.head())
 
@@ -146,6 +152,9 @@ class SimpleBVBModel:
             'probabilities': combined_probs,
             'confidence': prediction[1]
         }
+
+model = SimpleBVBModel()
+model.fit(bvb_matches)
 
 # 3. Обучаем модель
 print("\n=== ОБУЧЕНИЕ МОДЕЛИ ===")
