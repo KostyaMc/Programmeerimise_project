@@ -98,6 +98,9 @@ def index(request) -> HttpResponse:
         "draw_percent": draw_percent,
         "loss_percent": loss_percent,
         "bvb_prediction": bvb_prediction,
+        'social_links': {
+            'instagram': 'https://www.instagram.com/bvb09/',
+        },
     }   
     
 
@@ -113,7 +116,9 @@ def about(request):
         'text_on_page': 'НАДО ПРИДУМАТЬ И ДОБАВИТЬ',
         'what_we_do': 'Our goal is to create a user-friendly website for fans of our beloved football team Borussia Dortmund, providing them with information about matches, number of wins, draws and losses, adding statistical insights for fans of this sport',
         'about_description': 'We are first-year students at the University of Tartu, Institute of Computer Science - Konstantin Geimonen and Ruslan Nishaev',
-        'social_links.instagram': '',
+        'social_links': {
+            'instagram': 'https://www.instagram.com/bvb09/',
+        },
         'company_name': '',
         'email': '',
     }
