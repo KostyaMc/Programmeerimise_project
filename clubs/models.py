@@ -1,5 +1,6 @@
 from django.db import models
 
+# calculating percentages
 class Club(models.Model):
     name = models.CharField(max_length=100)
     games = models.IntegerField(default=0)

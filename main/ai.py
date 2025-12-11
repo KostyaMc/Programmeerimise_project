@@ -5,20 +5,17 @@ import random
 import os
 
 
-# Загрузка данных
-#data = pd.read_csv('bvb-2024.csv', encoding='cp1251', delimiter=',')
+# loading data
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 csv_path = os.path.join(BASE_DIR, 'data', 'bvb-2024.csv')
 data = pd.read_csv(csv_path, encoding='cp1251', delimiter=',')
 
-print("Первые строки данных:")
+print("first data lines:")
 print(data.head())
 
-# 1. Создаем целевую переменную
+# creating a target variable
 def get_match_result(row):
-    """
-    Определяем результат матча для Боруссии Дортмунд
-    """
+
     home_team = str(row['Home Team'])
     away_team = str(row['Away Team'])
     
@@ -45,29 +42,29 @@ def get_match_result(row):
                 return 'lose'
     return None
 
-# Применяем функцию
+
 data['BVB_Result'] = data.apply(get_match_result, axis=1)
 bvb_matches = data[data['BVB_Result'].notna()].copy()
 
-print(f"\nВсего матчей Боруссии: {len(bvb_matches)}")
-print("Распределение результатов:")
+print(f"\nTotal matches: {len(bvb_matches)}")
+print("distribution of results:")
 print(bvb_matches['BVB_Result'].value_counts())
 
-# 2. Простая модель на основе статистики
+# simple statistical model
 class SimpleBVBModel:
     def __init__(self):
         self.stats = {}
         self.overall_stats = {}
     
     def fit(self, data):
-        """Обучаем модель на исторических данных"""
-        # Общая статистика
+        
+        # general statistics
         self.overall_stats = dict(data['BVB_Result'].value_counts())
         total_matches = len(data)
         for result in self.overall_stats:
             self.overall_stats[result] /= total_matches
         
-        # Статистика по домашним/гостевым
+        
         home_stats = data[data['Home Team'].str.contains('Borussia Dortmund')]['BVB_Result'].value_counts()
         away_stats = data[data['Away Team'].str.contains('Borussia Dortmund')]['BVB_Result'].value_counts()
         
@@ -78,7 +75,7 @@ class SimpleBVBModel:
             self.stats['home'][result] = home_stats.get(result, 0) / len(home_stats) if len(home_stats) > 0 else 0
             self.stats['away'][result] = away_stats.get(result, 0) / len(away_stats) if len(away_stats) > 0 else 0
         
-        # Статистика по силе соперников
+        # by the strength of the opponents
         strong_teams = ['Bayern', 'Leipzig', 'Leverkusen', 'Stuttgart', 'Frankfurt']
         medium_teams = ['Wolfsburg', 'Gladbach', 'Hoffenheim', 'Augsburg', 'Freiburg']
         
@@ -89,7 +86,7 @@ class SimpleBVBModel:
         return self
     
     def _calculate_opponent_stats(self, data, team_list, exclude=None):
-        """Рассчитываем статистику против определенных команд"""
+        # calculation against opponents
         if exclude is None:
             exclude = []
         
@@ -101,11 +98,11 @@ class SimpleBVBModel:
                 opponent = str(row['Home Team'])
             
             if team_list:
-                # Если указан список команд, берем только их
+                
                 if any(team in opponent for team in team_list):
                     opponent_matches.append(row['BVB_Result'])
             else:
-                # Иначе берем всех, кроме исключенных
+               
                 if not any(excl_team in opponent for excl_team in exclude):
                     opponent_matches.append(row['BVB_Result'])
         
@@ -117,8 +114,8 @@ class SimpleBVBModel:
         return {result: stats.get(result, 0) / total for result in ['win', 'draw', 'lose']}
     
     def predict(self, opponent, is_home=True):
-        """Предсказываем результат матча"""
-        # Определяем силу соперника
+        # prediction result
+        
         strong_teams = ['Bayern', 'Leipzig', 'Leverkusen', 'Stuttgart', 'Frankfurt']
         medium_teams = ['Wolfsburg', 'Gladbach', 'Hoffenheim', 'Augsburg', 'Freiburg']
         
@@ -129,22 +126,22 @@ class SimpleBVBModel:
         else:
             opponent_stats = self.stats['vs_weak']
         
-        # Комбинируем статистику
+        
         location_stats = self.stats['home' if is_home else 'away']
         
-        # Среднее взвешенное (можно настроить веса)
+        
         combined_probs = {}
         for result in ['win', 'draw', 'lose']:
             combined_probs[result] = (location_stats[result] * 0.4 + 
                                     opponent_stats[result] * 0.4 + 
                                     self.overall_stats[result] * 0.2)
         
-        # Нормализуем вероятности
+        
         total = sum(combined_probs.values())
         for result in combined_probs:
             combined_probs[result] /= total
         
-        # Выбираем наиболее вероятный результат
+        # most likely outcome
         prediction = max(combined_probs.items(), key=lambda x: x[1])
         
         return {
@@ -156,35 +153,35 @@ class SimpleBVBModel:
 model = SimpleBVBModel()
 model.fit(bvb_matches)
 
-# 3. Обучаем модель
-print("\n=== ОБУЧЕНИЕ МОДЕЛИ ===")
+# model training
+print("\nMODEL TRAINING")
 model = SimpleBVBModel()
 model.fit(bvb_matches)
 
-print("Общая статистика:")
+print("general statistics:")
 for result, prob in model.overall_stats.items():
     print(f"  {result}: {prob:.2%}")
 
-print("\nСтатистика по месту:")
+print("\nstatistics by location:")
 for location in ['home', 'away']:
     print(f"  {location}:")
     for result, prob in model.stats[location].items():
         print(f"    {result}: {prob:.2%}")
 
-# 4. Делаем предсказания
-print("\n=== ПРЕДСКАЗАНИЯ ===")
+# prediction
+print("\nPREDICTION")
 
 def predict_and_display(opponent, is_home=True):
     result = model.predict(opponent, is_home)
-    print(f"\nБоруссия Дортмунд vs {opponent}")
-    print(f"Место: {'Дома' if is_home else 'В гостях'}")
-    print(f"Предсказание: {result['prediction'].upper()}")
-    print(f"Уверенность: {result['confidence']:.2%}")
-    print("Вероятности:")
+    print(f"\nBorussia Dortmund vs {opponent}")
+    print(f"Location: {'Home' if is_home else 'Away'}")
+    print(f"Prediction: {result['prediction'].upper()}")
+    print(f"Confidence: {result['confidence']:.2%}")
+    print("Probability:")
     for res, prob in result['probabilities'].items():
         print(f"  {res}: {prob:.2%}")
 
-# Тестовые предсказания
+# test prediction
 test_matches = [
     ("Bayern Munich", False),
     ("Mainz", True),
@@ -196,8 +193,8 @@ test_matches = [
 for opponent, is_home in test_matches:
     predict_and_display(opponent, is_home)
 
-# 5. Анализ эффективности модели
-print("\n=== АНАЛИЗ ЭФФЕКТИВНОСТИ ===")
+# 5. analysis 
+print("\nPerformance analysis")
 
 def calculate_accuracy(model, data):
     correct = 0
@@ -220,10 +217,10 @@ def calculate_accuracy(model, data):
     return correct / total
 
 accuracy = calculate_accuracy(model, bvb_matches)
-print(f"Точность на исторических данных: {accuracy:.2%}")
+print(f"Data accuracy: {accuracy:.2%}")
 
-# 6. Простая визуализация
-print("\n=== СТАТИСТИКА ===")
-print("Последние 10 матчей Боруссии:")
+# simple visualisation
+print("\nStatistics")
+print("Last 10 matches:")
 recent_matches = bvb_matches.tail(10)[['Home Team', 'Away Team', 'Result', 'BVB_Result']]
 print(recent_matches.to_string(index=False))
