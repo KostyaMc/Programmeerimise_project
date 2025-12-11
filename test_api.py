@@ -16,7 +16,7 @@ try:
         matches_response = requests.get(matches_url, headers=headers)
         matches_data = matches_response.json()
 
-        print("\n Последние 5 матчей Borussia Dortmund:\n")
+        print("\n Last 5 matches Borussia Dortmund:\n")
         for match in matches_data["matches"][-5:]:
             home = match["homeTeam"]["name"]
             away = match["awayTeam"]["name"]
@@ -24,7 +24,7 @@ try:
             date = match["utcDate"][:10]
             print(f"{date} — {home} {score['home']} : {score['away']} {away}")
     else:
-        print("Команда не найдена.")
+        print("team not found.")
 except:
     print("Request from footballs API doesnt work")
 
@@ -32,16 +32,11 @@ except:
 # BVB CL finished matches
 try:
     response = requests.get(f'https://api.football-data.org/v4/teams/{team_id}/matches?competitions={competition_id}&status=FINISHED', headers=headers, timeout=10)
-    
-    # Вывод отладочной информации
-    #print(f"Status Code: {response.status_code}")
-    #print(f"Headers: {response.headers}")
-    #print(f"Content: {response.text[:500]}")  # первые 500 символов
-    
-    # Проверка статуса
+       
+    # status control
     response.raise_for_status()
     
-    # Попытка парсинга JSON
+    # parsing attempt JSON
     data = response.json()
     
     for match in data["matches"]:

@@ -65,14 +65,13 @@ def index(request) -> HttpResponse:
             "away_score": score["away"]
         })
 
-
     total = wins + draws + losses or 1
     win_percent = round((wins / total) * 100, 1)
     draw_percent = round((draws / total) * 100, 1)
     loss_percent = round((losses / total) * 100, 1)
 
 
-    opponent = request.GET.get('opponent')  # берем соперника из GET параметра
+    opponent = request.GET.get('opponent')  # take an opponent from GET
     is_home = request.GET.get('is_home') == 'on'
     bvb_prediction = None
 
@@ -113,13 +112,12 @@ def about(request):
     context = {
         'title': 'About us',
         'content': 'This page contains basic information about the sites creators',
-        'text_on_page': 'НАДО ПРИДУМАТЬ И ДОБАВИТЬ',
         'what_we_do': 'Our goal is to create a user-friendly website for fans of our beloved football team Borussia Dortmund, providing them with information about matches, number of wins, draws and losses, adding statistical insights for fans of this sport',
         'about_description': 'We are first-year students at the University of Tartu, Institute of Computer Science - Konstantin Geimonen and Ruslan Nishaev',
         'social_links': {
             'instagram': 'https://www.instagram.com/bvb09/',
         },
-        'company_name': '',
+        'company_name': 'Borussia Dortmund',
         'email': 'service@bvb.de',
     }
 
