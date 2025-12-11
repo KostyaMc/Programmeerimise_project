@@ -72,20 +72,34 @@ def index(request) -> HttpResponse:
     loss_percent = round((losses / total) * 100, 1)
 
 
-    opponent = request.GET.get('opponent')  # берем соперника из GET параметра
-    is_home = request.GET.get('is_home') == 'on'
-    bvb_prediction = None
+    # --- NEXT MATCH PREDICTION ---
+    url_next = "https://api.football-data.org/v4/teams/4/matches?status=SCHEDULED"
+    response_next = requests.get(url_next, headers=headers)
+    next_matches_data = response_next.json()
 
-    if opponent:
+    bvb_prediction = None  # initialize
+
+    if next_matches_data.get("matches"):
+        next_match = next_matches_data["matches"][0]  # get the very next match
+        home = next_match["homeTeam"]["name"]
+        away = next_match["awayTeam"]["name"]
+        date = next_match["utcDate"][:10]
+
+        is_home = home == "Borussia Dortmund"
+        opponent = away if is_home else home
+
+        # Use your AI model to predict the next match
         result = model.predict(opponent, is_home)
         bvb_prediction = {
-            'opponent': opponent,
-            'is_home': is_home,
-            'prediction': result['prediction'],
-            'confidence': f"{result['confidence']*100:.1f}%",
-            'probabilities': result['probabilities'],
-        }  
-
+            "date": date,
+            "home": home,
+            "away": away,
+            "opponent": opponent,
+            "is_home": is_home,
+            "prediction": result['prediction'],
+            "confidence": f"{result['confidence']*100:.1f}%",
+            "probabilities": result['probabilities'],
+        }
 
     # Send data to the template      
     context = {
@@ -97,12 +111,11 @@ def index(request) -> HttpResponse:
         "win_percent": win_percent,
         "draw_percent": draw_percent,
         "loss_percent": loss_percent,
-        "bvb_prediction": bvb_prediction,
+        "bvb_prediction": bvb_prediction,  # next match prediction included
         'social_links': {
             'instagram': 'https://www.instagram.com/bvb09/',
         },
     }   
-    
 
     return render(request, 'main/index.html', context)
 
