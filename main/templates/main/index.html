@@ -40,10 +40,10 @@
 
             {% if bvb_prediction %}
                 <div class="prediction-result">
-                    <h3>Результат: {{ bvb_prediction.prediction|upper }}</h3>
-                    <p>Уверенность: {{ bvb_prediction.confidence }}</p>
+                    <h3>Result: {{ bvb_prediction.prediction|upper }}</h3>
+                    <p>Confidence: {{ bvb_prediction.confidence }}</p>
 
-                    <h4>Вероятности:</h4>
+                    <h4>Probability:</h4>
                     <ul>
                         {% for key, value in bvb_prediction.probabilities.items %}
                             <li>{{ key }}: {{ value|floatformat:2 }}</li>
