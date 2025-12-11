@@ -120,7 +120,7 @@ def about(request):
             'instagram': 'https://www.instagram.com/bvb09/',
         },
         'company_name': '',
-        'email': '',
+        'email': 'service@bvb.de',
     }
 
     return render(request, 'main/about.html', context)
