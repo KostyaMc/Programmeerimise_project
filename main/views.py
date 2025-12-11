@@ -137,3 +137,6 @@ def about(request):
     }
 
     return render(request, 'main/about.html', context)
+
+def squad(request):
+    return render(request, 'main/squad.html')
