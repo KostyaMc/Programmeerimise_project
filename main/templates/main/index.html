@@ -26,16 +26,16 @@
 
 <!-- === AI Prediction Form === -->
         <section class="ai-prediction">
-            <h2>Прогноз матча Боруссии Дортмунд</h2>
+            <h2>Borussia Dortmund match prediction</h2>
 
             <form method="get">
-                <label>Соперник:
+                <label>Rival team:
                     <input type="text" name="opponent" value="{{ bvb_prediction.opponent|default:'' }}">
                 </label>
-                <label>Дома:
+                <label>Home:
                     <input type="checkbox" name="is_home" {% if bvb_prediction.is_home %}checked{% endif %}>
                 </label>
-                <button type="submit">Предсказать</button>
+                <button type="submit">Prediction</button>
             </form>
 
             {% if bvb_prediction %}
