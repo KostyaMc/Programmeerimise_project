@@ -71,16 +71,10 @@ def index(request) -> HttpResponse:
     loss_percent = round((losses / total) * 100, 1)
 
 
-<<<<<<< HEAD
-    opponent = request.GET.get('opponent')  # take an opponent from GET
-    is_home = request.GET.get('is_home') == 'on'
-    bvb_prediction = None
-=======
     # --- NEXT MATCH PREDICTION ---
     url_next = "https://api.football-data.org/v4/teams/4/matches?status=SCHEDULED"
     response_next = requests.get(url_next, headers=headers)
     next_matches_data = response_next.json()
->>>>>>> fa117e1245ada17b92339d9383d1e221f5aa59e0
 
     bvb_prediction = None  # initialize
 
