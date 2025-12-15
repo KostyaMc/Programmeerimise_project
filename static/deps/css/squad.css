@@ -1,7 +1,3 @@
-/* deps/css/about.css */
-/* Borussia Dortmund Color Theme - Black & Yellow */
-
-/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -10,12 +6,12 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
-    color: #333;
     background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* Header styles - BVB Black */
+/* Header / Navigation */
 header {
     background-color: #000000; /* BVB Black */
     padding: 1rem 0;
@@ -26,7 +22,10 @@ nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 2rem;
+    padding: 0;
+    margin: 0;
 }
 
 nav a {
@@ -39,81 +38,21 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #FDE100; /* BVB Yellow */
-    color: #000000; /* BVB Black */
+    background-color: #FDE100;
+    color: #000000;
 }
 
-/* Main content styles */
+/* Main section */
 main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-.about-hero {
-    text-align: center;
-    margin-bottom: 3rem;
-    padding: 2rem 0;
-    background: linear-gradient(135deg, #000000 0%, #333333 100%); /* BVB Gradient */
-    border-radius: 8px;
-    color: #FDE100; /* BVB Yellow */
-}
-
-.about-hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-/* About content sections */
-.about-content {
+    max-width: 1000px;
+    margin: 2rem auto;
     background: white;
     border-radius: 8px;
     padding: 2rem;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    border: 2px solid #FDE100; /* BVB Yellow border */
+    border: 2px solid #FDE100;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.mission, .what-we-do, .contact-info {
-    margin-bottom: 2.5rem;
-}
-
-.mission h2, .what-we-do h2, .contact-info h2 {
-    color: #000000; /* BVB Black */
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 3px solid #FDE100; /* BVB Yellow */
-}
-
-.mission p, .what-we-do p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #555;
-}
-
-/* Contact info styles */
-.contact-details {
-    background: #FFFDE7; /* Light yellow background */
-    padding: 1.5rem;
-    border-radius: 6px;
-    border-left: 4px solid #FDE100; /* BVB Yellow */
-}
-
-.contact-item {
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-}
-
-.contact-item strong {
-    color: #000000; /* BVB Black */
-}
-
-/* Footer styles - BVB Colors */
 footer {
     background-color: #000000; /* BVB Black */
     color: #FDE100; /* BVB Yellow */

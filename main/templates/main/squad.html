@@ -3,11 +3,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Title of the document</title>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static 'deps/images/Borussia_Dortmund_logo.svg' %}">
+
+    <link rel="stylesheet" href="{% static 'deps/css/about.css' %}">
 </head>
 
 <body>
-Squad (no one)
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="{% url 'squad' %}">Squad</a></li>
+            </ul>
+        </nav>
+    </header>
+
+     <footer>
+        <div class="footer-content">
+            <p>&copy; 2025. {{ company_name }} All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="{{ social_links.instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
 </body>
 
 </html> 

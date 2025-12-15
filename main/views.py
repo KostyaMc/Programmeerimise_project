@@ -124,17 +124,28 @@ def about(request):
     
     context = {
         'title': 'About us',
-        'content': 'This page contains basic information about the sites creators',
+        'content': 'This page contains basic information about the creators of the site',
         'what_we_do': 'Our goal is to create a user-friendly website for fans of our beloved football team Borussia Dortmund, providing them with information about matches, number of wins, draws and losses, adding statistical insights for fans of this sport',
-        'about_description': 'We are first-year students at the University of Tartu, Institute of Computer Science - Konstantin Geimonen and Ruslan Nishaev',
+        'about_description': 'We are first-year students at the University of Tartu, Institute of Computer Science - Konstantin Geimonen and Ruslan Nišajev',
         'social_links': {
             'instagram': 'https://www.instagram.com/bvb09/',
         },
         'company_name': 'Borussia Dortmund',
-        'email': 'service@bvb.de',
+        'emails': [
+            'nisajev@ut.ee',
+            'konstantin.geimonen@ut.ee',
+        ]
+
     }
 
     return render(request, 'main/about.html', context)
 
 def squad(request):
-    return render(request, 'main/squad.html')
+    context = {
+        'title': 'Squad',
+        'social_links': {
+            'instagram': 'https://www.instagram.com/bvb09/',
+        },
+    }
+
+    return render(request, 'main/squad.html', context)
