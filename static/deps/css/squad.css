@@ -62,7 +62,7 @@ footer {
 }
 
 .footer-content {
-    max-width: 1200px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -72,10 +72,22 @@ footer {
     font-size: 1rem;
 }
 
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+}
 .social-links {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .social-links a {
@@ -91,49 +103,4 @@ footer {
 .social-links a:hover {
     background-color: #FDE100; /* BVB Yellow */
     color: #000000; /* BVB Black */
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    main {
-        padding: 1rem;
-    }
-    
-    .about-hero h1 {
-        font-size: 2rem;
-    }
-    
-    .about-content {
-        padding: 1.5rem;
-    }
-    
-    nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-    }
-    
-    .social-links {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .social-links a {
-        display: block;
-        margin: 0.25rem 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .about-hero h1 {
-        font-size: 1.5rem;
-    }
-    
-    .mission h2, .what-we-do h2, .contact-info h2 {
-        font-size: 1.5rem;
-    }
-    
-    .mission p, .what-we-do p {
-        font-size: 1rem;
-    }
 }
