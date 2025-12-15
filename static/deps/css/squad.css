@@ -104,3 +104,83 @@ footer {
     background-color: #FDE100; /* BVB Yellow */
     color: #000000; /* BVB Black */
 }
+
+/* Slider container */
+.player-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 3rem auto;
+    max-width: 900px;
+}
+
+/* Buttons */
+.slider-btn {
+    background-color: #000;
+    color: #FDE100;
+    border: none;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.slider-btn:hover {
+    background-color: #FDE100;
+    color: #000;
+}
+
+/* Track */
+.slider-track {
+    display: flex;
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    transition: transform 0.4s ease;
+}
+
+/* Player card */
+.player-card {
+    width: 300px;
+    flex: 0 0 300px;
+    margin-right: 1rem;
+    background: white;
+    border: 2px solid #FDE100;
+    border-radius: 8px;
+    text-align: center;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+/* Image */
+.player-card img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+/* Info row */
+.player-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Name & number */
+.player-name {
+    color: #000;
+}
+
+.player-number {
+    color: #000;
+}
+
+.slider-window {
+    overflow: hidden;
+    width: 900px; /* or whatever visible width you want */
+}

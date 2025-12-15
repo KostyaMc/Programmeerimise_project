@@ -24,6 +24,41 @@
         </nav>
     </header>
 
+    <main>
+        <div class="player-slider">
+            <button class="slider-btn prev">&#10094;</button>
+
+            <div class="slider-window">
+                <div class="slider-track">
+                    <div class="player-card">
+                        <img src="{% static 'deps/images/Kobel_card.jpg' %}" alt="kobel">
+                        <div class="player-info">
+                            <span class="player-name">GREGOR KOBEL</span>
+                            <span class="player-number">#01</span>
+                        </div>
+                    </div>
+
+                    <div class="player-card">
+                        <img src="{% static 'deps/images/Couto_card.jpg' %}" alt="couto">
+                        <div class="player-info">
+                            <span class="player-name">Yan Couto</span>
+                            <span class="player-number">#02</span>
+                        </div>
+                    </div>
+
+                    <div class="player-card">
+                        <img src="{% static 'deps/images/Anton_card.jpg' %}" alt="anton">
+                        <div class="player-info">
+                            <span class="player-name">Waldemar Anton</span>
+                            <span class="player-number">#03</span>
+                        </div>
+                    </div>
+                </div>
+
+            <button class="slider-btn next">&#10095;</button>
+        </div>
+    </main>
+
      <footer>
         <div class="footer-content">
             <div class="social-links">
@@ -31,6 +66,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="{% static 'deps/js/slider.js' %}"></script>
 
 </body>
 
