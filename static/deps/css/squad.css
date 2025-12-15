@@ -4,11 +4,17 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f9fa;
     color: #333;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header / Navigation */
@@ -50,7 +56,7 @@ main {
     border-radius: 8px;
     padding: 2rem;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    border: 2px solid #FDE100;
+    flex: 1; /* takes up remaining space */
 }
 
 footer {
@@ -105,46 +111,16 @@ footer {
     color: #000000; /* BVB Black */
 }
 
-/* Slider container */
-.player-slider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin: 3rem auto;
-    max-width: 900px;
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 1.5rem; /* space between cards */
+    max-width: 1000px;
+    margin: 2rem auto;
 }
 
-/* Buttons */
-.slider-btn {
-    background-color: #000;
-    color: #FDE100;
-    border: none;
-    font-size: 2rem;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 6px;
-}
-
-.slider-btn:hover {
-    background-color: #FDE100;
-    color: #000;
-}
-
-/* Track */
-.slider-track {
-    display: flex;
-    overflow: hidden;
-    flex: 1;
-    display: flex;
-    transition: transform 0.4s ease;
-}
-
-/* Player card */
 .player-card {
-    width: 300px;
-    flex: 0 0 300px;
-    margin-right: 1rem;
+    width: 100%; /* full width of the column */
     background: white;
     border: 2px solid #FDE100;
     border-radius: 8px;
@@ -153,25 +129,21 @@ footer {
     box-sizing: border-box;
 }
 
-/* Image */
 .player-card img {
-    width: 150px;
-    height: 200px;
+    width: 150px;   /* fixed size */
+    height: 200px;  /* fixed size */
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 0.5rem;
 }
 
-/* Info row */
 .player-info {
     display: flex;
-    justify-content: space-between;
-    margin-top: 0.75rem;
+    justify-content: space-between; /* name left, number right */
     font-weight: 600;
     font-size: 1.1rem;
 }
 
-/* Name & number */
 .player-name {
     color: #000;
 }
@@ -180,7 +152,9 @@ footer {
     color: #000;
 }
 
-.slider-window {
-    overflow: hidden;
-    width: 900px; /* or whatever visible width you want */
+/* Responsive design: 1 column on small screens */
+@media (max-width: 768px) {
+    .players-grid {
+        grid-template-columns: 1fr;
+    }
 }
