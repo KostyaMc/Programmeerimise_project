@@ -113,11 +113,10 @@ footer {
 
 .players-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem; /* space between cards */
     max-width: 1000px;
     margin: 2rem auto;
-    justify-content: center;
 }
 
 .player-card {
@@ -140,17 +139,23 @@ footer {
 
 .player-info {
     display: flex;
-    justify-content: space-between; /* name left, number right */
+    align-items: flex-start;
+    gap: 0.5rem;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
 }
 
 .player-name {
     color: #000;
+    flex: 1;                 /* takes available space */
+    text-align: left;
+    word-break: break-word;
 }
 
 .player-number {
     color: #000;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 /* Responsive design: 1 column on small screens */
