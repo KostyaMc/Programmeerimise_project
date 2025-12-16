@@ -117,6 +117,7 @@ footer {
     gap: 1.5rem; /* space between cards */
     max-width: 1000px;
     margin: 2rem auto;
+    justify-content: center;
 }
 
 .player-card {
@@ -141,7 +142,7 @@ footer {
     display: flex;
     justify-content: space-between; /* name left, number right */
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
 }
 
 .player-name {
