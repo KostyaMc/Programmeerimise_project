@@ -50,16 +50,6 @@
 {% endif %}
 
 
-        <p>{{ content }}</p>
-
-
-        <section class="stats">
-            <h2>Match statistics</h2>
-            <p>Wins: {{ wins }} ({{ win_percent }}%)</p>
-            <p>Draws: {{ draws }} ({{ draw_percent }}%)</p>
-            <p>Losses: {{ losses }} ({{ loss_percent }}%)</p>
-        </section>
-
         <section class="matches">
             <h2>Last 5 Matches</h2>
             <table>
@@ -79,6 +69,13 @@
                 {% endfor %}
             </table>
         </section>
+
+        <section class="stats">
+            <p>Wins: {{ wins }} ({{ win_percent }}%)</p>
+            <p>Draws: {{ draws }} ({{ draw_percent }}%)</p>
+            <p>Losses: {{ losses }} ({{ loss_percent }}%)</p>
+        </section>
+
         </main>
 
     <footer>
