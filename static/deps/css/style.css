@@ -88,13 +88,20 @@ h2 {
 
 /* Match Statistics */
 .stats {
-    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;   /* center horizontally */
+    gap: 2rem;                 /* space between items */
+    margin-top: 2rem;
 }
 
 .stats p {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     margin-top: 1rem;
+}
+
+.matches {
+    text-align: center;
 }
 
 /* Match Table */
