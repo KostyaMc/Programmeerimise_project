@@ -11,8 +11,12 @@ Mängude ennustamiseks kasutatakse lihtsat tehisintellekti mudelit,
 mis põhineb Borussia Dortmundi 2024. aasta hooaja ajaloolistel andmetel.
 
 Allikad:
+- https://youtu.be/qz0aGYrrlhU?si=ob0dm4BXOOYvvNGz
+- https://youtu.be/rHux0gMZ3Eg?si=zQLUXl79b16COGoq
 - https://docs.djangoproject.com/en/5.2/
 - https://realpython.com/python-requests/
+- https://www.youtube.com/watch?v=QUT1VHiLmmI
+- https://www.youtube.com/watch?v=2uvysYbKdjM
 """
 
 from django.shortcuts import render
