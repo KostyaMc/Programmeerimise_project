@@ -66,9 +66,9 @@ def index(request) -> HttpResponse:
         })
 
     total = wins + draws + losses or 1
-    win_percent = round((wins / total) * 100, 1)
-    draw_percent = round((draws / total) * 100, 1)
-    loss_percent = round((losses / total) * 100, 1)
+    win_percent = round((wins / total) * 100, 0)
+    draw_percent = round((draws / total) * 100, 0)
+    loss_percent = round((losses / total) * 100, 0)
 
 
     # --- NEXT MATCH PREDICTION ---
