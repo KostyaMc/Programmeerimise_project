@@ -1,21 +1,34 @@
 {% load static %}
+<!-- Django static-failide (CSS, pildid jms) kasutamiseks -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Lehe kodeering -->
     <meta charset="UTF-8">
+
+    <!-- Responsive disain mobiilseadmetele -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Lehe pealkiri (dünaamiline Django kontekstist) -->
     <title>{{ title }}</title>
 
+    <!-- Google Fonts – Poppins font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lehe ikoon (favicon) -->
     <link rel="icon" type="image/x-icon" href="{% static 'deps/images/Borussia_Dortmund_logo.svg' %}">
 
+    <!-- About-lehe CSS fail -->
     <link rel="stylesheet" href="{% static 'deps/css/about.css' %}">
 </head>
+
 <body>
+    <!-- ===== Päis ja navigatsioon ===== -->
     <header>
         <nav>
             <ul>
+                <!-- Navigatsioonimenüü -->
                 <li><a href="{% url 'home' %}">Avaleht</a></li>
                 <li><a href="{% url 'squad' %}">Meeskond</a></li>
                 <li><a href="{% url 'about' %}">Meist</a></li>
@@ -23,44 +36,60 @@
         </nav>
     </header>
 
+    <!-- ===== Peamine sisu ===== -->
     <main>
 
+        <!-- Lehe pealkiri -->
         <h1>{{ title }}</h1>
 
+        <!-- About-lehe sisuplokk -->
         <section class="about-content">
             <div class="container">
+
+                <!-- Sektsioon: Kes me oleme -->
                 <div class="mission">
                     <h2>Kes me oleme?</h2>
                     <p>{{ about_description }}</p>
                 </div>
 
+                <!-- Sektsioon: Mida me teeme -->
                 <div class="what-we-do">
                     <h2>Mida me teeme?</h2>
                     <p>{{ what_we_do }}</p>
                 </div>
+
+                <!-- Sektsioon: Kontakt -->
                 <div class="contact-info">
                     <h2>Võtke meiega ühendust</h2>
                 </div>
+
+                <!-- Kontaktandmete plokk -->
                 <div class="contact-details">
                     <div class="contact-item">
                         <strong>Email:</strong><br>
+
+                        <!-- E-posti aadresside kuvamine tsüklis -->
                         {% for email in emails %}
                             {{ email }}<br>
                         {% endfor %}
                     </div>
                 </div>
+
             </div>
         </section>
     </main>
 
+    <!-- ===== Jalus ===== -->
     <footer>
         <div class="footer-content">
             <div class="social-links">
-                <a href="{{ social_links.instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <!-- Instagrami link -->
+                <a href="{{ social_links.instagram }}" target="_blank" rel="noopener noreferrer">
+                    Instagram
+                </a>
             </div>
         </div>
     </footer>
 
-    <script src="{% static 'deps/js/main.js' %}"></script>
 </body>
 </html>

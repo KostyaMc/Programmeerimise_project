@@ -1,22 +1,34 @@
 {% load static %}
+<!-- Django static-failide (CSS, pildid jms) kasutamiseks -->
 
 <!DOCTYPE html>
-<html>
+<html lang="et">
 <head>
-<meta charset="UTF-8">
+    <!-- Lehe kodeering -->
+    <meta charset="UTF-8">
+
+    <!-- Responsive disain mobiilseadmetele -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Lehe pealkiri (dünaamiline Django kontekstist) -->
     <title>{{ title }}</title>
 
+    <!-- Google Fonts – Poppins font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lehe ikoon (favicon) -->
     <link rel="icon" type="image/x-icon" href="{% static 'deps/images/Borussia_Dortmund_logo.svg' %}">
 
+    <!-- Meeskonna lehe CSS fail -->
     <link rel="stylesheet" href="{% static 'deps/css/squad.css' %}">
 </head>
 
 <body>
+    <!-- ===== Päis ja navigatsioon ===== -->
     <header>
         <nav>
             <ul>
+                <!-- Navigatsioonimenüü -->
                 <li><a href="{% url 'home' %}">Avaleht</a></li>
                 <li><a href="{% url 'squad' %}">Meeskond</a></li>
                 <li><a href="{% url 'about' %}">Meist</a></li>
@@ -24,19 +36,30 @@
         </nav>
     </header>
 
+    <!-- ===== Peamine sisu ===== -->
     <main>
+        <!-- Lehe pealkiri -->
         <h1>{{ title }}</h1>
+
+        <!-- Mängijate grid (kaartide paigutus) -->
         <div class="players-grid">
+
+            <!-- ===== Ühe mängija kaart ===== -->
             <div class="player-card">
-                <img src="{% static 'deps/images/Kobel_card.jpg' %}" alt="kobel">
+                <!-- Mängija pilt -->
+                <img src="{% static 'deps/images/Kobel_card.jpg' %}" alt="Gregor Kobel">
+
+                <!-- Mängija info (nimi ja number) -->
                 <div class="player-info">
                     <span class="player-name">Gregor Kobel</span>
                     <span class="player-number">#01</span>
                 </div>
             </div>
 
+            <!-- Järgmised mängijad on üles ehitatud sama struktuuri järgi -->
+
             <div class="player-card">
-                <img src="{% static 'deps/images/Couto_card.jpg' %}" alt="couto">
+                <img src="{% static 'deps/images/Couto_card.jpg' %}" alt="Yan Couto">
                 <div class="player-info">
                     <span class="player-name">Yan Couto</span>
                     <span class="player-number">#02</span>
@@ -44,7 +67,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Anton_card.jpg' %}" alt="anton">
+                <img src="{% static 'deps/images/Anton_card.jpg' %}" alt="Waldemar Anton">
                 <div class="player-info">
                     <span class="player-name">Waldemar Anton</span>
                     <span class="player-number">#03</span>
@@ -52,7 +75,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Schlotterbeck_card.jpg' %}" alt="schlotterbeck">
+                <img src="{% static 'deps/images/Schlotterbeck_card.jpg' %}" alt="Nico Schlotterbeck">
                 <div class="player-info">
                     <span class="player-name">Nico Schlotterbeck</span>
                     <span class="player-number">#04</span>
@@ -60,7 +83,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Bensebaini_card.jpg' %}" alt="bensebaini">
+                <img src="{% static 'deps/images/Bensebaini_card.jpg' %}" alt="Ramy Bensebaini">
                 <div class="player-info">
                     <span class="player-name">Ramy Bensebaini</span>
                     <span class="player-number">#05</span>
@@ -68,7 +91,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Oezcan_card.jpg' %}" alt="ozcan">
+                <img src="{% static 'deps/images/Oezcan_card.jpg' %}" alt="Salih Özcan">
                 <div class="player-info">
                     <span class="player-name">Salih Özcan</span>
                     <span class="player-number">#06</span>
@@ -76,7 +99,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Bellingham_card.jpg' %}" alt="bellingham">
+                <img src="{% static 'deps/images/Bellingham_card.jpg' %}" alt="Jobe Bellingham">
                 <div class="player-info">
                     <span class="player-name">Jobe Bellingham</span>
                     <span class="player-number">#07</span>
@@ -84,7 +107,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Nmecha_card.jpg' %}" alt="nmecha">
+                <img src="{% static 'deps/images/Nmecha_card.jpg' %}" alt="Felix Nmecha">
                 <div class="player-info">
                     <span class="player-name">Felix Nmecha</span>
                     <span class="player-number">#08</span>
@@ -92,7 +115,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Guirassy_card.jpg' %}" alt="guirassy">
+                <img src="{% static 'deps/images/Guirassy_card.jpg' %}" alt="Serhou Guirassy">
                 <div class="player-info">
                     <span class="player-name">Serhou Guirassy</span>
                     <span class="player-number">#09</span>
@@ -100,7 +123,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Brandt_card.jpg' %}" alt="brandt">
+                <img src="{% static 'deps/images/Brandt_card.jpg' %}" alt="Julian Brandt">
                 <div class="player-info">
                     <span class="player-name">Julian Brandt</span>
                     <span class="player-number">#10</span>
@@ -108,7 +131,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Gross_card.jpg' %}" alt="nmecha">
+                <img src="{% static 'deps/images/Gross_card.jpg' %}" alt="Pascal Groß">
                 <div class="player-info">
                     <span class="player-name">Pascal Groß</span>
                     <span class="player-number">#13</span>
@@ -116,7 +139,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Beier_card.jpg' %}" alt="beier">
+                <img src="{% static 'deps/images/Beier_card.jpg' %}" alt="Maximilian Beier">
                 <div class="player-info">
                     <span class="player-name">Maximilian Beier</span>
                     <span class="player-number">#14</span>
@@ -124,7 +147,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Duranville_card.jpg' %}" alt="duranville">
+                <img src="{% static 'deps/images/Duranville_card.jpg' %}" alt="Julien Duranville">
                 <div class="player-info">
                     <span class="player-name">Julien Duranville</span>
                     <span class="player-number">#16</span>
@@ -132,7 +155,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Chukwuemeka_card.jpg' %}" alt="chukwuemeka">
+                <img src="{% static 'deps/images/Chukwuemeka_card.jpg' %}" alt="Carney Chukwuemeka">
                 <div class="player-info">
                     <span class="player-name">Carney Chukwuemeka</span>
                     <span class="player-number">#17</span>
@@ -140,7 +163,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Sabitzer_card.jpg' %}" alt="sabitzer">
+                <img src="{% static 'deps/images/Sabitzer_card.jpg' %}" alt="Marcel Sabitzer">
                 <div class="player-info">
                     <span class="player-name">Marcel Sabitzer</span>
                     <span class="player-number">#20</span>
@@ -148,7 +171,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Silva_card.jpg' %}" alt="silva">
+                <img src="{% static 'deps/images/Silva_card.jpg' %}" alt="Fabio Silva">
                 <div class="player-info">
                     <span class="player-name">Fabio Silva</span>
                     <span class="player-number">#21</span>
@@ -156,7 +179,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Can_card.jpg' %}" alt="can">
+                <img src="{% static 'deps/images/Can_card.jpg' %}" alt="Emre Can">
                 <div class="player-info">
                     <span class="player-name">Emre Can</span>
                     <span class="player-number">#23</span>
@@ -164,7 +187,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Svensson_card.jpg' %}" alt="svensson">
+                <img src="{% static 'deps/images/Svensson_card.jpg' %}" alt="Daniel Svensson">
                 <div class="player-info">
                     <span class="player-name">Daniel Svensson</span>
                     <span class="player-number">#24</span>
@@ -172,7 +195,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Suele_card.jpg' %}" alt="sule">
+                <img src="{% static 'deps/images/Suele_card.jpg' %}" alt="Niklas Süle">
                 <div class="player-info">
                     <span class="player-name">Niklas Süle</span>
                     <span class="player-number">#25</span>
@@ -180,7 +203,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Ryerson_card.jpg' %}" alt="ryerson">
+                <img src="{% static 'deps/images/Ryerson_card.jpg' %}" alt="Julian Ryerson">
                 <div class="player-info">
                     <span class="player-name">Julian Ryerson</span>
                     <span class="player-number">#26</span>
@@ -188,7 +211,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Adeyemi_card.jpg' %}" alt="adeyemi">
+                <img src="{% static 'deps/images/Adeyemi_card.jpg' %}" alt="Karim Adeyemi">
                 <div class="player-info">
                     <span class="player-name">Karim Adeyemi</span>
                     <span class="player-number">#27</span>
@@ -196,7 +219,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Anselmino_card.jpg' %}" alt="anselmino">
+                <img src="{% static 'deps/images/Anselmino_card.jpg' %}" alt="Aaron Anselmino">
                 <div class="player-info">
                     <span class="player-name">Aaron Anselmino</span>
                     <span class="player-number">#28</span>
@@ -204,7 +227,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Drewes_card.jpg' %}" alt="drewes">
+                <img src="{% static 'deps/images/Drewes_card.jpg' %}" alt="Patrick Drewes">
                 <div class="player-info">
                     <span class="player-name">Patrick Drewes</span>
                     <span class="player-number">#30</span>
@@ -212,7 +235,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Ostrzinski_card.jpg' %}" alt="ostrzinski">
+                <img src="{% static 'deps/images/Ostrzinski_card.jpg' %}" alt="Silas Ostrzinski">
                 <div class="player-info">
                     <span class="player-name">Silas Ostrzinski</span>
                     <span class="player-number">#31</span>
@@ -220,7 +243,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Meyer_card.jpg' %}" alt="meyer">
+                <img src="{% static 'deps/images/Meyer_card.jpg' %}" alt="Alexander Meyer">
                 <div class="player-info">
                     <span class="player-name">Alexander Meyer</span>
                     <span class="player-number">#33</span>
@@ -228,7 +251,7 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Campbell_card.jpg' %}" alt="campbell">
+                <img src="{% static 'deps/images/Campbell_card.jpg' %}" alt="Cole Campbell">
                 <div class="player-info">
                     <span class="player-name">Cole Campbell</span>
                     <span class="player-number">#37</span>
@@ -236,41 +259,44 @@
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Mane_card.jpg' %}" alt="mane">
+                <img src="{% static 'deps/images/Mane_card.jpg' %}" alt="Filippo Mané">
                 <div class="player-info">
-                    <span class="player-name">Filippo Mane</span>
+                    <span class="player-name">Filippo Mané</span>
                     <span class="player-number">#39</span>
                 </div>
             </div>
 
             <div class="player-card">
-                <img src="{% static 'deps/images/Kabar_card.jpg' %}" alt="kabar">
+                <img src="{% static 'deps/images/Kabar_card.jpg' %}" alt="Almugera Kabar">
                 <div class="player-info">
                     <span class="player-name">Almugera Kabar</span>
                     <span class="player-number">#42</span>
                 </div>
             </div>
 
+            <!-- Treeneri kaart -->
             <div class="player-card">
-                <img src="{% static 'deps/images/NKovac_card.jpg' %}" alt="kovac">
+                <img src="{% static 'deps/images/NKovac_card.jpg' %}" alt="Niko Kovač">
                 <div class="player-info">
-                    <span class="player-name">Niko Kovac</span>
+                    <span class="player-name">Niko Kovač</span>
                     <span class="player-number">Treener</span>
                 </div>
             </div>
 
         </div>
-
     </main>
 
-     <footer>
+    <!-- ===== Jalus ===== -->
+    <footer>
         <div class="footer-content">
             <div class="social-links">
-                <a href="{{ social_links.instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <!-- Instagrami link -->
+                <a href="{{ social_links.instagram }}" target="_blank" rel="noopener noreferrer">
+                    Instagram
+                </a>
             </div>
         </div>
     </footer>
 
 </body>
-
-</html> 
+</html>

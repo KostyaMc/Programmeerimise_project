@@ -1,22 +1,29 @@
 """
 Projekt: Jalgpalliklubide statistika
 Autorid: Konstantin Geimonen ja Ruslan Nišajev
-Kirjeldus: Django veebiprojekt, mis kuvab jalgpalliklubide viimase viie mängu statistikat 
-(näiteks võitude, viikide ja kaotuste arv ning nende protsentuaalne jaotus). 
-Praegu on süsteemis olemas ainult Borussia Dortmundi andmed.
-Kasutatud allikad:
-https://youtu.be/qz0aGYrrlhU?si=ob0dm4BXOOYvvNGz
-https://youtu.be/rHux0gMZ3Eg?si=zQLUXl79b16COGoq
-https://docs.djangoproject.com/en/5.2/
-https://realpython.com/python-requests/
+
+Kirjeldus:
+Käesolev Django rakendus kuvab Borussia Dortmundi mängude statistikat,
+sealhulgas viimaseid mänge, võitude, viikide ja kaotuste arvu ning
+järgmise mängu tulemuse ennustust.
+
+Mängude ennustamiseks kasutatakse lihtsat tehisintellekti mudelit,
+mis põhineb Borussia Dortmundi 2024. aasta hooaja ajaloolistel andmetel.
+
+Allikad:
+- https://docs.djangoproject.com/en/5.2/
+- https://realpython.com/python-requests/
 """
 
 from django.shortcuts import render
 from django.http import HttpResponse
 import requests
 
+# Tehisintellekti mudeli import
 from .ai import model
 
+
+# ===== Ennustuste tõlketabel (inglise → eesti) =====
 PREDICTION_TRANSLATIONS = {
     "win": "Võit",
     "draw": "Viik",
@@ -24,14 +31,22 @@ PREDICTION_TRANSLATIONS = {
     "loss": "Kaotus",
 }
 
-# Home Page
+
+# ===== Avalehe vaade =====
 def index(request) -> HttpResponse:
-    # API setup
+    """
+    Avalehe vaade.
+    Kuvab:
+    - Borussia Dortmundi viimased 5 mängu
+    - Võitude, viikide ja kaotuste statistika
+    - Järgmise mängu ennustuse (AI mudel)
+    """
+
+    # Football-Data API aadress lõppenud mängude jaoks
     url = "https://api.football-data.org/v4/teams/4/matches?status=FINISHED"
     headers = {"X-Auth-Token": "0969f3f7693f4b7a9803059c33490f65"}
 
-
-    # Get the data from the API
+    # Andmete pärimine API-st
     response = requests.get(url, headers=headers)
     matches_data = response.json()
 
@@ -40,14 +55,14 @@ def index(request) -> HttpResponse:
     draws = 0
     losses = 0
 
-    # Last 5 matches
+    # Viimase 5 mängu töötlemine
     for match in matches_data["matches"][-5:]:
         home = match["homeTeam"]["name"]
         away = match["awayTeam"]["name"]
         score = match["score"]["fullTime"]
         date = match["utcDate"][:10]
 
-        # Understand if the team has won/lost/drawn
+        # Mängu tulemuse määramine Borussia Dortmundi vaates
         if home == "Borussia Dortmund":
             if score["home"] > score["away"]:
                 wins += 1
@@ -63,7 +78,7 @@ def index(request) -> HttpResponse:
             else:
                 losses += 1
 
-
+        # Mängu lisamine nimekirja
         matches.append({
             "date": date,
             "home": home,
@@ -72,21 +87,23 @@ def index(request) -> HttpResponse:
             "away_score": score["away"]
         })
 
+    # Protsentuaalse statistika arvutamine
     total = wins + draws + losses or 1
     win_percent = round((wins / total) * 100, 1)
     draw_percent = round((draws / total) * 100, 1)
     loss_percent = round((losses / total) * 100, 1)
 
 
-    # --- NEXT MATCH PREDICTION ---
+    # ===== Järgmise mängu ennustus =====
     url_next = "https://api.football-data.org/v4/teams/4/matches?status=SCHEDULED"
     response_next = requests.get(url_next, headers=headers)
     next_matches_data = response_next.json()
 
-    bvb_prediction = None  # initialize
+    bvb_prediction = None
 
+    # Kui järgmine mäng on olemas
     if next_matches_data.get("matches"):
-        next_match = next_matches_data["matches"][0]  # get the very next match
+        next_match = next_matches_data["matches"][0]
         home = next_match["homeTeam"]["name"]
         away = next_match["awayTeam"]["name"]
         date = next_match["utcDate"][:10]
@@ -94,14 +111,16 @@ def index(request) -> HttpResponse:
         is_home = home == "Borussia Dortmund"
         opponent = away if is_home else home
 
-        # Use your AI model to predict the next match
+        # Tehisintellekti mudeli kasutamine ennustamiseks
         result = model.predict(opponent, is_home)
 
+        # Ennustuse tõlkimine eesti keelde
         raw_prediction = result["prediction"].lower()
         translated_prediction = PREDICTION_TRANSLATIONS.get(
             raw_prediction, raw_prediction
         )
 
+        # Ennustuse andmete ettevalmistamine mallile
         bvb_prediction = {
             "date": date,
             "home": home,
@@ -117,7 +136,7 @@ def index(request) -> HttpResponse:
             },
         }
 
-    # Send data to the template      
+    # Andmete edastamine HTML-mallile
     context = {
         "title": "Avaleht",
         "matches": matches,
@@ -127,42 +146,55 @@ def index(request) -> HttpResponse:
         "win_percent": win_percent,
         "draw_percent": draw_percent,
         "loss_percent": loss_percent,
-        "bvb_prediction": bvb_prediction,  # next match prediction included
-        'social_links': {
-            'instagram': 'https://www.instagram.com/bvb09/',
+        "bvb_prediction": bvb_prediction,
+        "social_links": {
+            "instagram": "https://www.instagram.com/bvb09/",
         },
-    }   
+    }
 
-    return render(request, 'main/index.html', context)
+    return render(request, "main/index.html", context)
 
 
-# page About us
+# ===== Meist-lehe vaade =====
 def about(request):
-    
-    context = {
-        'title': 'Meist',
-        'content': 'This page contains basic information about the creators of the site',
-        'what_we_do': 'Meie eesmärk on luua kasutajasõbralik veebileht meie armastatud jalgpalliklubi Borussia Dortmundi fännidele, pakkudes neile infot mängude, võitude, viigide ja kaotuste kohta ning lisades statistilisi andmeid selle spordiala fännidele.',
-        'about_description': 'Oleme Tartu Ülikooli informaatika instituudi esimese kursuse tudengid – Konstantin Geimonen ja Ruslan Nišajev.',
-        'social_links': {
-            'instagram': 'https://www.instagram.com/bvb09/',
-        },
-        'company_name': 'Borussia Dortmund',
-        'emails': [
-            'nisajev@ut.ee',
-            'konstantin.geimonen@ut.ee',
-        ]
+    """
+    Kuvab info veebilehe autorite ja projekti eesmärgi kohta
+    """
 
+    context = {
+        "title": "Meist",
+        "what_we_do": (
+            "Meie eesmärk on luua kasutajasõbralik veebileht "
+            "Borussia Dortmundi fännidele, pakkudes infot mängude, "
+            "võitude, viikide ja kaotuste kohta ning statistilisi ülevaateid."
+        ),
+        "about_description": (
+            "Oleme Tartu Ülikooli informaatika instituudi "
+            "esimese kursuse tudengid – Konstantin Geimonen ja Ruslan Nišajev."
+        ),
+        "social_links": {
+            "instagram": "https://www.instagram.com/bvb09/",
+        },
+        "emails": [
+            "nisajev@ut.ee",
+            "konstantin.geimonen@ut.ee",
+        ],
     }
 
-    return render(request, 'main/about.html', context)
+    return render(request, "main/about.html", context)
 
+
+# ===== Meeskonna lehe vaade =====
 def squad(request):
+    """
+    Kuvab Borussia Dortmundi praeguse meeskonna
+    """
+
     context = {
-        'title': 'Meeskond',
-        'social_links': {
-            'instagram': 'https://www.instagram.com/bvb09/',
+        "title": "Meeskond",
+        "social_links": {
+            "instagram": "https://www.instagram.com/bvb09/",
         },
     }
 
-    return render(request, 'main/squad.html', context)
+    return render(request, "main/squad.html", context)

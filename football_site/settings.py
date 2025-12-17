@@ -11,38 +11,47 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-
 from django.conf.global_settings import STATICFILES_DIRS
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+# ===== Projekti baaskataloog =====
+# BASE_DIR viitab projekti juurkaustale
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+# ===== Arendusseaded =====
+# NB! Need seaded EI sobi tootmiskeskkonda
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# Turvavõti (SECRET_KEY)
+# Kasutatakse krüpteerimiseks ja sessioonide turvamiseks
 SECRET_KEY = 'django-insecure-%+7v(&o*d6p&x3vo1n%))0x!p_ui(%uhwga9xx0xqk$rb=@n9u'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True tähendab, et veateated kuvatakse detailselt
+# Tootmises peab see olema False
 DEBUG = True
 
+# Lubatud hostid (tühi arenduse ajal)
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
+# ===== Rakenduste definitsioon =====
 INSTALLED_APPS = [
+    # Django sisseehitatud rakendused
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Projekti enda rakendused
     'clubs',
     'main',
 ]
 
+
+# ===== Middleware (vahekihtide) seadistus =====
+# Middleware töötleb HTTP päringuid enne ja pärast view'd
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,13 +62,24 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+# ===== URL-ide põhikonfiguratsioon =====
 ROOT_URLCONF = 'football_site.urls'
 
+
+# ===== Mallide (templates) seadistus =====
 TEMPLATES = [
     {
+        # Django mallimootor
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+
+        # Globaalne templates kaust
         'DIRS': [BASE_DIR / 'templates'],
+
+        # Otsib template faile ka rakenduste sees
         'APP_DIRS': True,
+
+        # Kontekstiprotsessorid (lisavad andmeid mallidesse)
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
@@ -70,12 +90,14 @@ TEMPLATES = [
     },
 ]
 
+
+# ===== WSGI rakendus =====
+# Kasutatakse tootmiskeskkonnas serveriga suhtlemiseks
 WSGI_APPLICATION = 'football_site.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
+# ===== Andmebaasi seadistus =====
+# Kasutatakse SQLite andmebaasi (sobib arenduseks)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -84,9 +106,8 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
-
+# ===== Parooli valideerimine =====
+# Tagab kasutajate paroolide turvalisuse
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -103,26 +124,26 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
+# ===== Rahvusvahelistamine =====
+# Keele- ja ajavööndi seaded
+LANGUAGE_CODE = 'en-us'   # Lehe vaikekeel
 
-LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC'         # Ajavöönd
 
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_TZ = True
+USE_I18N = True           # Rahvusvahelistamise lubamine
+USE_TZ = True             # Ajavööndite kasutamine
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
+# ===== Staatilised failid =====
+# CSS, JavaScript ja pildid
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [BASE_DIR / 'static']
+# Staatiliste failide kaust
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
+# ===== Vaikimisi primaarvõtme tüüp =====
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

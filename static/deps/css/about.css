@@ -1,7 +1,7 @@
 /* deps/css/about.css */
-/* Borussia Dortmund Color Theme - Black & Yellow */
+/* Borussia Dortmundi värviteema – must ja kollane */
 
-/* Reset and base styles */
+/* ===== Üldine reset ja baasseaded ===== */
 * {
     margin: 0;
     padding: 0;
@@ -21,9 +21,9 @@ body {
     flex-direction: column;
 }
 
-/* Header styles - BVB Black */
+/* ===== Päis ja navigatsioon ===== */
 header {
-    background-color: #000000; /* BVB Black */
+    background-color: #000000; /* Borussia Dortmund must */
     padding: 1rem 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -36,7 +36,7 @@ nav ul {
 }
 
 nav a {
-    color: #FDE100; /* BVB Yellow */
+    color: #FDE100; /* Borussia Dortmund kollane */
     text-decoration: none;
     font-weight: normal;
     padding: 0.5rem 1rem;
@@ -44,63 +44,73 @@ nav a {
     transition: all 0.3s ease;
 }
 
+/* Navigatsiooni hover-efekt */
 nav a:hover {
-    background-color: #FDE100; /* BVB Yellow */
-    color: #000000; /* BVB Black */
+    background-color: #FDE100;
+    color: #000000;
 }
 
-/* Main content styles */
+/* ===== Peamine sisu ===== */
 main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
-    flex: 1; /* takes up remaining space */
+    flex: 1; /* Täidab ülejäänud vertikaalse ruumi */
 }
 
+/* Lehe pealkiri */
 h1 {
     color: #000000;
     display: block;
     padding-bottom: 0.3rem;
     margin-bottom: 1rem;
     text-align: center;
-    margin: 0 auto 1rem;
 }
 
-/* About content sections */
+/* ===== About-lehe sisuplokk ===== */
 .about-content {
     background: white;
     border-radius: 8px;
     padding: 2rem;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    border: 2px solid #FDE100; /* BVB Yellow border */
+    border: 2px solid #FDE100; /* Kollane raam */
 }
 
+/* Sisu laius ja tsentreerimine */
 .container {
     max-width: 800px;
     margin: 0 auto;
 }
 
-.mission, .what-we-do, .contact-info {
+/* Sektsioonide vahed */
+.mission,
+.what-we-do,
+.contact-info {
     margin-bottom: 2.5rem;
 }
 
-.mission h2, .what-we-do h2, .contact-info h2 {
-    color: #000000; /* BVB Black */
+/* Sektsioonide pealkirjad */
+.mission h2,
+.what-we-do h2,
+.contact-info h2 {
+    color: #000000;
     font-size: 1.8rem;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 3px solid #FDE100; /* BVB Yellow */
+    border-bottom: 3px solid #FDE100;
 }
 
-.mission p, .what-we-do p {
+/* Sektsioonide tekst */
+.mission p,
+.what-we-do p {
     font-size: 1.1rem;
     line-height: 1.8;
     color: #555;
 }
 
-/* Contact info styles */
+/* ===== Kontaktinfo plokk ===== */
 .contact-details {
-    background: #FFFDE7; /* Light yellow background */
+    background: #FFFDE7; /* Hele kollane taust */
     padding: 1.5rem;
     border-radius: 6px;
 }
@@ -111,13 +121,13 @@ h1 {
 }
 
 .contact-item strong {
-    color: #000000; /* BVB Black */
+    color: #000000;
 }
 
-/* Footer styles - BVB Colors */
+/* ===== Jalus ===== */
 footer {
-    background-color: #000000; /* BVB Black */
-    color: #FDE100; /* BVB Yellow */
+    background-color: #000000;
+    color: #FDE100;
     text-align: center;
     padding: 2rem 0;
     margin-top: 3rem;
@@ -134,6 +144,7 @@ footer {
     font-size: 1rem;
 }
 
+/* Sotsiaalmeedia lingid */
 .social-links {
     display: flex;
     justify-content: center;
@@ -141,45 +152,42 @@ footer {
 }
 
 .social-links a {
-    color: #FDE100; /* BVB Yellow */
+    color: #FDE100;
     text-decoration: none;
     padding: 0.5rem 1rem;
-    border: 2px solid #FDE100; /* BVB Yellow */
+    border: 2px solid #FDE100;
     border-radius: 4px;
     transition: all 0.3s ease;
     font-weight: 600;
 }
 
+/* Hover-efekt sotsiaalmeedia linkidel */
 .social-links a:hover {
-    background-color: #FDE100; /* BVB Yellow */
-    color: #000000; /* BVB Black */
+    background-color: #FDE100;
+    color: #000000;
 }
 
-/* Responsive design */
+/* ===== Responsive disain (tahvel ja mobiil) ===== */
 @media (max-width: 768px) {
     main {
         padding: 1rem;
     }
-    
-    .about-hero h1 {
-        font-size: 2rem;
-    }
-    
+
     .about-content {
         padding: 1.5rem;
     }
-    
+
     nav ul {
         flex-direction: column;
         gap: 0.5rem;
         text-align: center;
     }
-    
+
     .social-links {
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .social-links a {
         display: block;
         margin: 0.25rem 0;
@@ -187,15 +195,14 @@ footer {
 }
 
 @media (max-width: 480px) {
-    .about-hero h1 {
+    .mission h2,
+    .what-we-do h2,
+    .contact-info h2 {
         font-size: 1.5rem;
     }
-    
-    .mission h2, .what-we-do h2, .contact-info h2 {
-        font-size: 1.5rem;
-    }
-    
-    .mission p, .what-we-do p {
+
+    .mission p,
+    .what-we-do p {
         font-size: 1rem;
     }
 }

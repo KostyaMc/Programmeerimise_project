@@ -1,13 +1,16 @@
+/* ===== Üldine reset ja baasseaded ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Täiskõrgus HTML-ile ja body-le */
 html, body {
     height: 100%;
 }
 
+/* Keha (body) üldised stiilid */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f9fa;
@@ -17,13 +20,14 @@ body {
     flex-direction: column;
 }
 
-/* Header / Navigation */
+/* ===== Päis ja navigatsioon ===== */
 header {
-    background-color: #000000; /* BVB Black */
+    background-color: #000000; /* Borussia Dortmund must */
     padding: 1rem 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* Navigatsiooni nimekiri */
 nav ul {
     list-style: none;
     display: flex;
@@ -34,8 +38,9 @@ nav ul {
     margin: 0;
 }
 
+/* Navigatsiooni lingid */
 nav a {
-    color: #FDE100; /* BVB Yellow */
+    color: #FDE100; /* Borussia Dortmund kollane */
     text-decoration: none;
     font-weight: normal;
     padding: 0.5rem 1rem;
@@ -43,12 +48,13 @@ nav a {
     transition: all 0.3s ease;
 }
 
+/* Hover-efekt navigatsioonilinkidele */
 nav a:hover {
     background-color: #FDE100;
     color: #000000;
 }
 
-/* Main section */
+/* ===== Peamine sisu ===== */
 main {
     max-width: 1200px;
     margin: 2rem auto;
@@ -58,44 +64,50 @@ main {
     border-radius: 0;
 }
 
+/* Lehe pealkiri */
 h1 {
     color: #000000;
     display: block;
     padding-bottom: 0.3rem;
     margin-bottom: 1rem;
     text-align: center;
-    margin: 0 auto 1rem;
 }
 
+/* ===== Jalus ===== */
 footer {
-    background-color: #000000; /* BVB Black */
-    color: #FDE100; /* BVB Yellow */
+    background-color: #000000; /* Borussia Dortmund must */
+    color: #FDE100; /* Borussia Dortmund kollane */
     text-align: center;
     padding: 2rem 0;
     margin-top: 3rem;
 }
 
+/* Jaluse sisu konteiner */
 .footer-content {
     max-width: 600px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
+/* Jaluse tekst */
 .footer-content p {
     margin-bottom: 1rem;
     font-size: 1rem;
 }
 
+/* ===== Responsive disain (tahvel ja mobiil) ===== */
 @media (max-width: 768px) {
     main {
         padding: 1rem;
     }
+
     nav ul {
         flex-direction: column;
         gap: 0.5rem;
     }
-    
 }
+
+/* ===== Sotsiaalmeedia lingid ===== */
 .social-links {
     display: flex;
     justify-content: center;
@@ -104,31 +116,35 @@ footer {
     flex-wrap: wrap;
 }
 
+/* Sotsiaalmeedia lingi stiil */
 .social-links a {
-    color: #FDE100; /* BVB Yellow */
+    color: #FDE100;
     text-decoration: none;
     padding: 0.5rem 1rem;
-    border: 2px solid #FDE100; /* BVB Yellow */
+    border: 2px solid #FDE100;
     border-radius: 4px;
     transition: all 0.3s ease;
     font-weight: 600;
 }
 
+/* Hover-efekt sotsiaalmeedia linkidele */
 .social-links a:hover {
-    background-color: #FDE100; /* BVB Yellow */
-    color: #000000; /* BVB Black */
+    background-color: #FDE100;
+    color: #000000;
 }
 
+/* ===== Mängijate grid (Squad / Meeskond) ===== */
 .players-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem; /* space between cards */
+    gap: 1.5rem; /* vahe kaartide vahel */
     max-width: 1000px;
     margin: 2rem auto;
 }
 
+/* Ühe mängija kaart */
 .player-card {
-    width: 100%; /* full width of the column */
+    width: 100%;
     background: white;
     border: 2px solid #FDE100;
     border-radius: 8px;
@@ -137,14 +153,16 @@ footer {
     box-sizing: border-box;
 }
 
+/* Mängija pilt */
 .player-card img {
-    width: 150px;   /* fixed size */
-    height: 200px;  /* fixed size */
-    object-fit: cover;
+    width: 150px;
+    height: 200px;
+    object-fit: cover; /* säilitab proportsioonid */
     border-radius: 8px;
     margin-bottom: 0.5rem;
 }
 
+/* Mängija info (nimi ja number) */
 .player-info {
     display: flex;
     align-items: flex-start;
@@ -153,20 +171,22 @@ footer {
     font-size: 1.1rem;
 }
 
+/* Mängija nimi */
 .player-name {
     color: #000;
-    flex: 1;                 /* takes available space */
+    flex: 1; /* kasutab saadaval oleva ruumi */
     text-align: left;
     word-break: break-word;
 }
 
+/* Mängija number */
 .player-number {
     color: #000;
     flex-shrink: 0;
     white-space: nowrap;
 }
 
-/* Responsive design: 1 column on small screens */
+/* ===== Responsive disain: üks veerg väikestel ekraanidel ===== */
 @media (max-width: 768px) {
     .players-grid {
         grid-template-columns: 1fr;

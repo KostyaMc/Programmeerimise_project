@@ -1,6 +1,6 @@
 # Programeerimise_projekt
 ## Projekti kirjeldus:
-Veebisait, mis töötleb jalgpalliklubi andmeid ja kuvab võitude, kaotuste ja viikide protsendid ning teeb prognoosi selle kohta, kummal meeskonnal on järgmises mängus suurem võiduvõimalus.
+Veebilehe, mis töötleb jalgpalliklubi andmeid ja kuvab võitude, kaotuste ja viikide protsendid ning teeb prognoosi selle kohta, kummal meeskonnal on järgmises mängus suurem võiduvõimalus.
 
 ## Kasutatud teegid ja tehnoloogiad:
 

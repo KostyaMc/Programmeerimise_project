@@ -1,25 +1,38 @@
 {% load static %}
-
-<!-- при добавлении ссылок на css и js файлов, использую конструкцию: href="{% static "путь до файла" %}" -->
+<!-- Django static-failide laadimine (CSS, pildid jms) -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Lehe kodeering -->
     <meta charset="UTF-8">
+
+    <!-- Responsive disain mobiilseadmetele -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Lehe pealkiri (dünaamiline) -->
     <title>{{ title }}</title>
+
+    <!-- Google Fonts ühendus -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Poppins font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lehe ikoon (favicon) -->
     <link rel="icon" type="image/x-icon" href="{% static 'deps/images/Borussia_Dortmund_logo.svg' %}">
 
+    <!-- Põhiline CSS fail -->
     <link rel="stylesheet" href="{% static 'deps/css/style.css' %}">
-
 </head>
+
 <body>
+    <!-- ===== Päis ja navigatsioon ===== -->
     <header>
         <nav>
             <ul>
+                <!-- Navigatsiooni lingid -->
                 <li><a href="{% url 'home' %}">Avaleht</a></li>
                 <li><a href="{% url 'squad' %}">Meeskond</a></li>
                 <li><a href="{% url 'about' %}">Meist</a></li>
@@ -27,65 +40,88 @@
         </nav>
     </header>
     
+    <!-- ===== Peamine sisu ===== -->
     <main>
+        <!-- Lehe pealkiri -->
         <h1>{{ title }}</h1>
 
+        <!-- Valge sisuplokk raamiga -->
         <div class="content-box">
-            <!-- === Next Match Prediction === -->
+
+            <!-- ===== Järgmise mängu ennustus ===== -->
             {% if bvb_prediction %}
             <section class="next-match-card">
 
-            <div class="nm-left">
-                <div class="nm-date">{{ bvb_prediction.date }}</div>
+                <!-- Vasak pool: kuupäev ja meeskonnad -->
+                <div class="nm-left">
 
-                <div class="nm-teams">
-                <div class="nm-team">
-                    <img
-                        class="nm-logo"
-                        src="{% static 'deps/images/Borussia_Dortmund_logo.svg' %}"
-                        alt="{{ bvb_prediction.home }}">
-                    <div class="nm-name">{{ bvb_prediction.home }}</div>
+                    <!-- Mängu kuupäev -->
+                    <div class="nm-date">{{ bvb_prediction.date }}</div>
+
+                    <!-- Meeskonnad ja VS -->
+                    <div class="nm-teams">
+
+                        <!-- Kodumeeskond -->
+                        <div class="nm-team">
+                            <img
+                                class="nm-logo"
+                                src="{% static 'deps/images/Borussia_Dortmund_logo.svg' %}"
+                                alt="{{ bvb_prediction.home }}">
+                            <div class="nm-name">{{ bvb_prediction.home }}</div>
+                        </div>
+
+                        <!-- VS tekst -->
+                        <div class="nm-vs">VS</div>
+
+                        <!-- Külalismeeskond -->
+                        <div class="nm-team">
+                            <img
+                                class="nm-logo"
+                                src="{% static 'deps/images/Borussia_Mönchengladbach_logo.svg' %}"
+                                alt="{{ bvb_prediction.away }}">
+                            <div class="nm-name">{{ bvb_prediction.away }}</div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="nm-vs">VS</div>
+                <!-- Vertikaalne eraldusjoon -->
+                <div class="nm-divider"></div>
 
-                <div class="nm-team">
-                    <img
-                        class="nm-logo"
-                        src="{% static '/deps/images/Borussia_Mönchengladbach_logo.svg' %}"
-                        alt="{{ bvb_prediction.away }}">
+                <!-- Parem pool: ennustus ja tõenäosused -->
+                <div class="nm-right">
 
-                    <div class="nm-name">{{ bvb_prediction.away }}</div>
-                </div>
-                </div>
-            </div>
+                    <!-- Ennustuse pealkiri -->
+                    <div class="nm-pred-title">Ennustus:</div>
 
-            <div class="nm-divider"></div>
+                    <!-- Ennustatud tulemus (Võit / Viik / Kaotus) -->
+                    <div class="nm-pred">{{ bvb_prediction.prediction|upper }}</div>
 
-            <div class="nm-right">
-                <div class="nm-pred-title">Ennustus:</div>
-                <div class="nm-pred">{{ bvb_prediction.prediction|upper }}</div>
+                    <!-- Tõenäosused protsentides -->
+                    <div class="nm-probs">
+                        <div class="nm-prob">
+                            <span>Võit</span>
+                            <b>{{ bvb_prediction.probabilities.win|floatformat:-1 }}%</b>
+                        </div>
+                        <div class="nm-prob">
+                            <span>Viik</span>
+                            <b>{{ bvb_prediction.probabilities.draw|floatformat:-1 }}%</b>
+                        </div>
+                        <div class="nm-prob">
+                            <span>Kaotus</span>
+                            <b>{{ bvb_prediction.probabilities.lose|floatformat:-1 }}%</b>
+                        </div>
+                    </div>
 
-                <div class="nm-probs">
-                <div class="nm-prob">
-                    <span>Võit</span><b>{{ bvb_prediction.probabilities.win|floatformat:-1 }}%</b>
                 </div>
-                <div class="nm-prob">
-                    <span>Viik</span><b>{{ bvb_prediction.probabilities.draw|floatformat:-1 }}%</b>
-                </div>
-                <div class="nm-prob">
-                    <span>Kaotus</span><b>{{ bvb_prediction.probabilities.lose|floatformat:-1 }}%</b>
-                </div>
-                </div>
-            </div>
-
             </section>
             {% endif %}
 
-
-
+            <!-- ===== Viimased mängud ===== -->
             <section class="matches">
                 <h2>Viimased 5 mängu</h2>
+
+                <!-- Mängude tabel -->
                 <table>
                     <tr>
                         <th>Kuupäev</th>
@@ -93,6 +129,8 @@
                         <th>Tulemus</th>
                         <th>Külalismeeskond</th>
                     </tr>
+
+                    <!-- Tsükkel viimaste mängude kuvamiseks -->
                     {% for match in matches %}
                     <tr>
                         <td>{{ match.date }}</td>
@@ -104,24 +142,27 @@
                 </table>
             </section>
 
+            <!-- ===== Üldstatistika ===== -->
             <section class="stats">
-                <p>Võidud: {{ wins }} ({{ win_percent|floatformat:0  }}%)</p>
-                <p>Viigid: {{ draws }} ({{ draw_percent|floatformat:0  }}%)</p>
-                <p>Kaotused: {{ losses }} ({{ loss_percent|floatformat:0  }}%)</p>
+                <p>Võidud: {{ wins }} ({{ win_percent|floatformat:0 }}%)</p>
+                <p>Viigid: {{ draws }} ({{ draw_percent|floatformat:0 }}%)</p>
+                <p>Kaotused: {{ losses }} ({{ loss_percent|floatformat:0 }}%)</p>
             </section>
+
         </div>
-        
     </main>
 
+    <!-- ===== Jalus ===== -->
     <footer>
         <div class="footer-content">
             <div class="social-links">
-                <a href="{{ social_links.instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <!-- Instagrami link -->
+                <a href="{{ social_links.instagram }}" target="_blank" rel="noopener noreferrer">
+                    Instagram
+                </a>
             </div>
         </div>
     </footer>
     
-    
-    <script src="{% static 'deps/js/main.js' %}"></script>
 </body>
 </html>
