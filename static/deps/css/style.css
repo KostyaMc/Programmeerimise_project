@@ -65,7 +65,128 @@ main {
     border-radius: 8px;
     padding: 2rem;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    border: 2px solid #FDE100;
+    border: 2px solid #ffe100;
+}
+
+.next-match-card {
+    display: flex;
+    border: 2px solid #000;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background: #fff;
+}
+
+.nm-left, .nm-right {
+    flex: 1;
+    padding: 1.2rem;
+}
+
+.nm-divider {
+    width: 2px;
+    background: #000;
+    opacity: 0.5;
+}
+
+/* Left side */
+.nm-date {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0rem;
+    transform: translateX(-18px);
+}
+
+.nm-teams {
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* <-- key */
+    gap: 3rem;    
+}
+
+.nm-team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* key line */
+    text-align: center;
+    width: auto;           /* remove fixed width */
+    max-width: 200px;  
+}
+
+.nm-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;   /* keeps logo proportions */
+    border-radius: 50%;    /* optional: remove if logos shouldn’t be round */
+}
+
+.nm-logo-placeholder {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.nm-vs {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+    transform: translateX(10px);
+}
+
+.nm-name {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+/* Right side */
+.nm-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.nm-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.nm-pred-title {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.nm-pred {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 1rem 0 3rem;
+}
+
+.nm-probs {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.nm-prob span {
+    display: block;
+    font-size: 1.2rem;
+}
+
+.nm-prob b {
+    display: block;
+    font-size: 1.6rem;
 }
 
 /* Headings */

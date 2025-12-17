@@ -33,22 +33,55 @@
         <div class="content-box">
             <!-- === Next Match Prediction === -->
             {% if bvb_prediction %}
-            <section class="next-match">
-                <h2>Next Match: {{ bvb_prediction.home }} vs {{ bvb_prediction.away }} ({{ bvb_prediction.date }})</h2>
+            <section class="next-match-card">
 
-                <div class="prediction-result">
-                    <h3>Predicted Result: {{ bvb_prediction.prediction|upper }}</h3>
-                    <p>Confidence: {{ bvb_prediction.confidence }}</p>
+            <div class="nm-left">
+                <div class="nm-date">{{ bvb_prediction.date }}</div>
 
-                    <h4>Probability:</h4>
-                    <ul>
-                        <li>Win: {{ bvb_prediction.probabilities.win|floatformat:-1 }}%</li>
-                        <li>Draw: {{ bvb_prediction.probabilities.draw|floatformat:-1 }}%</li>
-                        <li>Lose: {{ bvb_prediction.probabilities.lose|floatformat:-1 }}%</li>
-                    </ul>
+                <div class="nm-teams">
+                <div class="nm-team">
+                    <img
+                        class="nm-logo"
+                        src="{% static 'deps/images/Borussia_Dortmund_logo.svg' %}"
+                        alt="{{ bvb_prediction.home }}">
+                    <div class="nm-name">{{ bvb_prediction.home }}</div>
                 </div>
+
+                <div class="nm-vs">VS</div>
+
+                <div class="nm-team">
+                    <img
+                        class="nm-logo"
+                        src="{% static '/deps/images/Borussia_Mönchengladbach_logo.svg' %}"
+                        alt="{{ bvb_prediction.away }}">
+
+                    <div class="nm-name">{{ bvb_prediction.away }}</div>
+                </div>
+                </div>
+            </div>
+
+            <div class="nm-divider"></div>
+
+            <div class="nm-right">
+                <div class="nm-pred-title">Prediction:</div>
+                <div class="nm-pred">{{ bvb_prediction.prediction|upper }}</div>
+
+                <div class="nm-probs">
+                <div class="nm-prob">
+                    <span>Win</span><b>{{ bvb_prediction.probabilities.win|floatformat:-1 }}%</b>
+                </div>
+                <div class="nm-prob">
+                    <span>Draw</span><b>{{ bvb_prediction.probabilities.draw|floatformat:-1 }}%</b>
+                </div>
+                <div class="nm-prob">
+                    <span>Lose</span><b>{{ bvb_prediction.probabilities.lose|floatformat:-1 }}%</b>
+                </div>
+                </div>
+            </div>
+
             </section>
             {% endif %}
+
 
 
             <section class="matches">
