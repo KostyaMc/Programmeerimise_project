@@ -17,6 +17,13 @@ import requests
 
 from .ai import model
 
+PREDICTION_TRANSLATIONS = {
+    "win": "Võit",
+    "draw": "Viik",
+    "lose": "Kaotus",
+    "loss": "Kaotus",
+}
+
 # Home Page
 def index(request) -> HttpResponse:
     # API setup
@@ -89,13 +96,19 @@ def index(request) -> HttpResponse:
 
         # Use your AI model to predict the next match
         result = model.predict(opponent, is_home)
+
+        raw_prediction = result["prediction"].lower()
+        translated_prediction = PREDICTION_TRANSLATIONS.get(
+            raw_prediction, raw_prediction
+        )
+
         bvb_prediction = {
             "date": date,
             "home": home,
             "away": away,
             "opponent": opponent,
             "is_home": is_home,
-            "prediction": result['prediction'],
+            "prediction": translated_prediction,
             "confidence": f"{result['confidence']*100:.1f}%",
             "probabilities": {
                 "win": result['probabilities']['win'] * 100,
@@ -106,7 +119,7 @@ def index(request) -> HttpResponse:
 
     # Send data to the template      
     context = {
-        "title": "Home",
+        "title": "Avaleht",
         "matches": matches,
         "wins": wins,
         "draws": draws,
@@ -127,10 +140,10 @@ def index(request) -> HttpResponse:
 def about(request):
     
     context = {
-        'title': 'About us',
+        'title': 'Meist',
         'content': 'This page contains basic information about the creators of the site',
-        'what_we_do': 'Our goal is to create a user-friendly website for fans of our beloved football team Borussia Dortmund, providing them with information about matches, number of wins, draws and losses, adding statistical insights for fans of this sport',
-        'about_description': 'We are first-year students at the University of Tartu, Institute of Computer Science - Konstantin Geimonen and Ruslan Nišajev',
+        'what_we_do': 'Meie eesmärk on luua kasutajasõbralik veebileht meie armastatud jalgpalliklubi Borussia Dortmundi fännidele, pakkudes neile infot mängude, võitude, viigide ja kaotuste kohta ning lisades statistilisi andmeid selle spordiala fännidele.',
+        'about_description': 'Oleme Tartu Ülikooli informaatika instituudi esimese kursuse tudengid – Konstantin Geimonen ja Ruslan Nišajev.',
         'social_links': {
             'instagram': 'https://www.instagram.com/bvb09/',
         },
@@ -146,7 +159,7 @@ def about(request):
 
 def squad(request):
     context = {
-        'title': 'Squad',
+        'title': 'Meeskond',
         'social_links': {
             'instagram': 'https://www.instagram.com/bvb09/',
         },

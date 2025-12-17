@@ -20,9 +20,9 @@
     <header>
         <nav>
             <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'squad' %}">Squad</a></li>
-                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'home' %}">Avaleht</a></li>
+                <li><a href="{% url 'squad' %}">Meeskond</a></li>
+                <li><a href="{% url 'about' %}">Meist</a></li>
             </ul>
         </nav>
     </header>
@@ -63,18 +63,18 @@
             <div class="nm-divider"></div>
 
             <div class="nm-right">
-                <div class="nm-pred-title">Prediction:</div>
+                <div class="nm-pred-title">Ennustus:</div>
                 <div class="nm-pred">{{ bvb_prediction.prediction|upper }}</div>
 
                 <div class="nm-probs">
                 <div class="nm-prob">
-                    <span>Win</span><b>{{ bvb_prediction.probabilities.win|floatformat:-1 }}%</b>
+                    <span>Võit</span><b>{{ bvb_prediction.probabilities.win|floatformat:-1 }}%</b>
                 </div>
                 <div class="nm-prob">
-                    <span>Draw</span><b>{{ bvb_prediction.probabilities.draw|floatformat:-1 }}%</b>
+                    <span>Viik</span><b>{{ bvb_prediction.probabilities.draw|floatformat:-1 }}%</b>
                 </div>
                 <div class="nm-prob">
-                    <span>Lose</span><b>{{ bvb_prediction.probabilities.lose|floatformat:-1 }}%</b>
+                    <span>Kaotus</span><b>{{ bvb_prediction.probabilities.lose|floatformat:-1 }}%</b>
                 </div>
                 </div>
             </div>
@@ -85,13 +85,13 @@
 
 
             <section class="matches">
-                <h2>Last 5 Matches</h2>
+                <h2>Viimased 5 mängu</h2>
                 <table>
                     <tr>
-                        <th>Date</th>
-                        <th>Home</th>
-                        <th>Score</th>
-                        <th>Away</th>
+                        <th>Kuupäev</th>
+                        <th>Kodumeeskond</th>
+                        <th>Tulemus</th>
+                        <th>Külalismeeskond</th>
                     </tr>
                     {% for match in matches %}
                     <tr>
@@ -105,9 +105,9 @@
             </section>
 
             <section class="stats">
-                <p>Wins: {{ wins }} ({{ win_percent|floatformat:0  }}%)</p>
-                <p>Draws: {{ draws }} ({{ draw_percent|floatformat:0  }}%)</p>
-                <p>Losses: {{ losses }} ({{ loss_percent|floatformat:0  }}%)</p>
+                <p>Võidud: {{ wins }} ({{ win_percent|floatformat:0  }}%)</p>
+                <p>Viigid: {{ draws }} ({{ draw_percent|floatformat:0  }}%)</p>
+                <p>Kaotused: {{ losses }} ({{ loss_percent|floatformat:0  }}%)</p>
             </section>
         </div>
         
