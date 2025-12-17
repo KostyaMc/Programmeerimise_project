@@ -66,9 +66,9 @@ def index(request) -> HttpResponse:
         })
 
     total = wins + draws + losses or 1
-    win_percent = round((wins / total) * 100, 0)
-    draw_percent = round((draws / total) * 100, 0)
-    loss_percent = round((losses / total) * 100, 0)
+    win_percent = round((wins / total) * 100, 1)
+    draw_percent = round((draws / total) * 100, 1)
+    loss_percent = round((losses / total) * 100, 1)
 
 
     # --- NEXT MATCH PREDICTION ---
@@ -97,7 +97,11 @@ def index(request) -> HttpResponse:
             "is_home": is_home,
             "prediction": result['prediction'],
             "confidence": f"{result['confidence']*100:.1f}%",
-            "probabilities": result['probabilities'],
+            "probabilities": {
+                "win": result['probabilities']['win'] * 100,
+                "draw": result['probabilities']['draw'] * 100,
+                "lose": result['probabilities']['lose'] * 100,
+            },
         }
 
     # Send data to the template      

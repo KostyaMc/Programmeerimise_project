@@ -59,6 +59,15 @@ main {
     flex: 1; /* takes up remaining space */
 }
 
+h1 {
+    color: #000000;
+    display: block;
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin: 0 auto 1rem;
+}
+
 footer {
     background-color: #000000; /* BVB Black */
     color: #FDE100; /* BVB Yellow */

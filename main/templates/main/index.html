@@ -41,9 +41,9 @@
 
         <h4>Probability:</h4>
         <ul>
-            <li>Win: {{ bvb_prediction.probabilities.win|floatformat:2 }}%</li>
-            <li>Draw: {{ bvb_prediction.probabilities.draw|floatformat:2 }}%</li>
-            <li>Lose: {{ bvb_prediction.probabilities.lose|floatformat:2 }}%</li>
+            <li>Win: {{ bvb_prediction.probabilities.win|floatformat:-1 }}%</li>
+            <li>Draw: {{ bvb_prediction.probabilities.draw|floatformat:-1 }}%</li>
+            <li>Lose: {{ bvb_prediction.probabilities.lose|floatformat:-1 }}%</li>
         </ul>
     </div>
 </section>
