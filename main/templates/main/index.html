@@ -30,53 +30,55 @@
     <main>
         <h1>{{ title }}</h1>
 
-<!-- === Next Match Prediction === -->
-{% if bvb_prediction %}
-<section class="next-match">
-    <h2>Next Match: {{ bvb_prediction.home }} vs {{ bvb_prediction.away }} ({{ bvb_prediction.date }})</h2>
+        <div class="content-box">
+            <!-- === Next Match Prediction === -->
+            {% if bvb_prediction %}
+            <section class="next-match">
+                <h2>Next Match: {{ bvb_prediction.home }} vs {{ bvb_prediction.away }} ({{ bvb_prediction.date }})</h2>
 
-    <div class="prediction-result">
-        <h3>Predicted Result: {{ bvb_prediction.prediction|upper }}</h3>
-        <p>Confidence: {{ bvb_prediction.confidence }}</p>
+                <div class="prediction-result">
+                    <h3>Predicted Result: {{ bvb_prediction.prediction|upper }}</h3>
+                    <p>Confidence: {{ bvb_prediction.confidence }}</p>
 
-        <h4>Probability:</h4>
-        <ul>
-            <li>Win: {{ bvb_prediction.probabilities.win|floatformat:-1 }}%</li>
-            <li>Draw: {{ bvb_prediction.probabilities.draw|floatformat:-1 }}%</li>
-            <li>Lose: {{ bvb_prediction.probabilities.lose|floatformat:-1 }}%</li>
-        </ul>
-    </div>
-</section>
-{% endif %}
+                    <h4>Probability:</h4>
+                    <ul>
+                        <li>Win: {{ bvb_prediction.probabilities.win|floatformat:-1 }}%</li>
+                        <li>Draw: {{ bvb_prediction.probabilities.draw|floatformat:-1 }}%</li>
+                        <li>Lose: {{ bvb_prediction.probabilities.lose|floatformat:-1 }}%</li>
+                    </ul>
+                </div>
+            </section>
+            {% endif %}
 
 
-        <section class="matches">
-            <h2>Last 5 Matches</h2>
-            <table>
-                <tr>
-                    <th>Date</th>
-                    <th>Home</th>
-                    <th>Score</th>
-                    <th>Away</th>
-                </tr>
-                {% for match in matches %}
-                <tr>
-                    <td>{{ match.date }}</td>
-                    <td>{{ match.home }}</td>
-                    <td>{{ match.home_score }} : {{ match.away_score }}</td>
-                    <td>{{ match.away }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        </section>
+            <section class="matches">
+                <h2>Last 5 Matches</h2>
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Home</th>
+                        <th>Score</th>
+                        <th>Away</th>
+                    </tr>
+                    {% for match in matches %}
+                    <tr>
+                        <td>{{ match.date }}</td>
+                        <td>{{ match.home }}</td>
+                        <td>{{ match.home_score }} : {{ match.away_score }}</td>
+                        <td>{{ match.away }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </section>
 
-        <section class="stats">
-            <p>Wins: {{ wins }} ({{ win_percent|floatformat:0  }}%)</p>
-            <p>Draws: {{ draws }} ({{ draw_percent|floatformat:0  }}%)</p>
-            <p>Losses: {{ losses }} ({{ loss_percent|floatformat:0  }}%)</p>
-        </section>
-
-        </main>
+            <section class="stats">
+                <p>Wins: {{ wins }} ({{ win_percent|floatformat:0  }}%)</p>
+                <p>Draws: {{ draws }} ({{ draw_percent|floatformat:0  }}%)</p>
+                <p>Losses: {{ losses }} ({{ loss_percent|floatformat:0  }}%)</p>
+            </section>
+        </div>
+        
+    </main>
 
     <footer>
         <div class="footer-content">

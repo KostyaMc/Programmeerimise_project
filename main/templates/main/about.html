@@ -17,16 +17,15 @@
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="{% url 'about' %}t">About Us</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
                 <li><a href="{% url 'squad' %}">Squad</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section class="about-hero">
-            <h1>{{ content }}</h1>
-        </section>
+
+        <h1>{{ title }}</h1>
 
         <section class="about-content">
             <div class="container">
@@ -39,9 +38,10 @@
                     <h2>What We Do</h2>
                     <p>{{ what_we_do }}</p>
                 </div>
-
-                <div class="contact-details">
+                <div class="contact-info">
                     <h2>Contact Us</h2>
+                </div>
+                <div class="contact-details">
                     <div class="contact-item">
                         <strong>Email:</strong><br>
                         {% for email in emails %}
